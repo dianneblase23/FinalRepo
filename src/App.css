@@ -46,16 +46,20 @@
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
+  width: 52px;
+  height: 52px;
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(239, 71, 111, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   background: linear-gradient(135deg, #f7b733, #fc4a1a);
-  color: #1b1028;
-  font-weight: 800;
-  font-size: 1.45rem;
-  box-shadow: 0 10px 24px rgba(247, 183, 51, 0.35);
+}
+
+.brand-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .eyebrow {
