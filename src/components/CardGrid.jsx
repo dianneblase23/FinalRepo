@@ -1,6 +1,12 @@
 import CardItem from './CardItem'
 
-export default function CardGrid({ pokemon, favorites, onToggleFavorite }) {
+export default function CardGrid({
+  pokemon,
+  favorites,
+  onToggleFavorite,
+  descriptions = {},
+  descriptionStatus = {},
+}) {
   return (
     <div className="card-grid">
       {pokemon.map((item) => {
@@ -12,6 +18,8 @@ export default function CardGrid({ pokemon, favorites, onToggleFavorite }) {
             pokemon={item}
             isFavorite={isFavorite}
             onToggleFavorite={onToggleFavorite}
+            description={descriptions[item.id]}
+            descriptionStatus={descriptionStatus[item.id]}
           />
         )
       })}

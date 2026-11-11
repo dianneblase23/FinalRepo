@@ -29,6 +29,19 @@ export async function fetchPokemonTypes() {
   return data.results.map((type) => type.name)
 }
 
+export async function fetchPokemonDescription(id) {
+  const data = await getJson(`${API_BASE_URL}/pokemon-species/${id}`)
+  const entry =
+    data.flavor_text_entries.find((flavorText) => flavorText.language.name === 'en') ||
+    data.flavor_text_entries[0]
+
+  if (!entry) {
+    throw new Error(`No species description found for Pokémon ${id}.`)
+  }
+
+  return entry.flavor_text.replace(/[\f\n\r]+/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
 export async function fetchPokemonDetails(id) {
   const data = await getJson(`${API_BASE_URL}/pokemon/${id}`)
 

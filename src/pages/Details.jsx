@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
 import LoadingSpinner from '../components/LoadingSpinner'
-import { fetchPokemonDetails } from '../services/api'
+import { fetchPokemonDescription, fetchPokemonDetails } from '../services/api'
 
 export default function Details({ favorites, onToggleFavorite }) {
   const { id } = useParams()
@@ -10,6 +10,10 @@ export default function Details({ favorites, onToggleFavorite }) {
   const [pokemon, setPokemon] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [description, setDescription] = useState('')
+  const [descriptionLoading, setDescriptionLoading] = useState(true)
+  const [descriptionError, setDescriptionError] = useState('')
+  const [descriptionRetry, setDescriptionRetry] = useState(0)
 
   useEffect(() => {
     let ignore = false
@@ -40,6 +44,37 @@ export default function Details({ favorites, onToggleFavorite }) {
       ignore = true
     }
   }, [id])
+
+  useEffect(() => {
+    let ignore = false
+
+    async function loadDescription() {
+      setDescriptionLoading(true)
+      setDescriptionError('')
+      setDescription('')
+
+      try {
+        const flavorText = await fetchPokemonDescription(id)
+        if (!ignore) {
+          setDescription(flavorText)
+        }
+      } catch (loadError) {
+        if (!ignore) {
+          setDescriptionError(loadError.message || 'Unable to load the Pokémon description.')
+        }
+      } finally {
+        if (!ignore) {
+          setDescriptionLoading(false)
+        }
+      }
+    }
+
+    void loadDescription()
+
+    return () => {
+      ignore = true
+    }
+  }, [id, descriptionRetry])
 
   const isFavorite = useMemo(
     () => favorites.some((favorite) => favorite.id === Number(id)),
@@ -95,6 +130,26 @@ export default function Details({ favorites, onToggleFavorite }) {
               </span>
             ))}
           </div>
+
+          <section className="species-description" aria-labelledby="species-description-title">
+            <h3 id="species-description-title">Pokédex entry</h3>
+            {descriptionLoading ? (
+              <p>Loading Pokémon lore…</p>
+            ) : descriptionError ? (
+              <div>
+                <p>Description unavailable.</p>
+                <button
+                  type="button"
+                  className="description-retry"
+                  onClick={() => setDescriptionRetry((attempt) => attempt + 1)}
+                >
+                  Try again
+                </button>
+              </div>
+            ) : (
+              <p>{description}</p>
+            )}
+          </section>
 
           <div className="info-grid">
             <div className="info-card">
