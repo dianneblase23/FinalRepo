@@ -11,6 +11,12 @@
   color-scheme: dark;
 }
 
+:root[data-theme='light'] {
+  color: #1d2b40;
+  background: #f3f7fc;
+  color-scheme: light;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -26,6 +32,12 @@ body {
   background:
     radial-gradient(circle at top, rgba(89, 131, 231, 0.3), transparent 35%),
     linear-gradient(180deg, #040b15 0%, #0d1a2b 100%);
+}
+
+:root[data-theme='light'] body {
+  background:
+    radial-gradient(circle at top, rgba(147, 197, 253, 0.38), transparent 38%),
+    linear-gradient(180deg, #f8fbff 0%, #eaf1fa 100%);
 }
 
 button,

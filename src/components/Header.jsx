@@ -25,7 +25,7 @@ function BrandLogo() {
   )
 }
 
-export default function Header({ favoritesCount }) {
+export default function Header({ favoritesCount, theme, onToggleTheme }) {
   return (
     <header className="app-header">
       <div className="container header-inner">
@@ -36,7 +36,11 @@ export default function Header({ favoritesCount }) {
             <h1>PokeVault</h1>
           </div>
         </div>
-        <Navbar favoritesCount={favoritesCount} />
+        <Navbar
+          favoritesCount={favoritesCount}
+          theme={theme}
+          onToggleTheme={onToggleTheme}
+        />
       </div>
     </header>
   )
