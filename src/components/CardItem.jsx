@@ -30,8 +30,8 @@ export default function CardItem({ pokemon, isFavorite, onToggleFavorite }) {
           ))}
         </div>
         <div className="mini-stats">
-          <span>HP {pokemon.hp}</span>
-          <span>ATK {pokemon.attack}</span>
+          <span className="hp-stat">HP {pokemon.hp}</span>
+          <span className="attack-stat">ATK {pokemon.attack}</span>
         </div>
       </Link>
     </article>
