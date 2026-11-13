@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
 
-export default function CardItem({ pokemon, isFavorite, onToggleFavorite }) {
+export default function CardItem({
+  pokemon,
+  isFavorite,
+  onToggleFavorite,
+  description,
+  descriptionStatus,
+}) {
   const handleFavoriteClick = (event) => {
     event.preventDefault()
     event.stopPropagation()
@@ -30,9 +36,17 @@ export default function CardItem({ pokemon, isFavorite, onToggleFavorite }) {
           ))}
         </div>
         <div className="mini-stats">
-          <span>HP {pokemon.hp}</span>
-          <span>ATK {pokemon.attack}</span>
+          <span className="hp-stat">HP {pokemon.hp}</span>
+          <span className="attack-stat">ATK {pokemon.attack}</span>
         </div>
+        {(description || descriptionStatus) && (
+          <p className="pokemon-description">
+            {description ||
+              (descriptionStatus === 'loading'
+                ? 'Loading Pokémon lore…'
+                : 'Description unavailable.')}
+          </p>
+        )}
       </Link>
     </article>
   )

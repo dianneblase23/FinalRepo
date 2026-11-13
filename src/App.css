@@ -46,16 +46,20 @@
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
+  width: 52px;
+  height: 52px;
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(239, 71, 111, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   background: linear-gradient(135deg, #f7b733, #fc4a1a);
-  color: #1b1028;
-  font-weight: 800;
-  font-size: 1.45rem;
-  box-shadow: 0 10px 24px rgba(247, 183, 51, 0.35);
+}
+
+.brand-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .eyebrow {
@@ -104,6 +108,32 @@
   border: 1px solid rgba(249, 115, 22, 0.35);
   padding: 0.55rem 0.8rem;
   font-weight: 700;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.58);
+  color: #edf5ff;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(96, 165, 250, 0.16);
+  border-color: rgba(96, 165, 250, 0.42);
+}
+
+.theme-toggle span:first-child {
+  font-size: 1.3rem;
+  line-height: 1;
 }
 
 .main-content {
@@ -314,6 +344,37 @@
   font-size: 0.74rem;
 }
 
+.pokemon-description {
+  margin-top: 0.8rem;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.description-error {
+  margin-top: 1rem;
+  color: #fca5a5;
+  text-align: center;
+}
+
+.description-error button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.hp-stat {
+  color: #4ade80;
+}
+
+.attack-stat {
+  color: #f87171;
+}
+
 .favorite-toggle {
   position: absolute;
   top: 0.9rem;
@@ -480,6 +541,37 @@
   justify-content: flex-start;
 }
 
+.species-description {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 16px;
+  background: rgba(148, 163, 184, 0.06);
+}
+
+.species-description h3 {
+  margin-bottom: 0.45rem;
+  font-size: 0.8rem;
+  color: #93c5fd;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.species-description p {
+  color: #d7e8ff;
+  line-height: 1.6;
+}
+
+.description-retry {
+  margin-top: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #93c5fd;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 .info-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -563,6 +655,143 @@
   gap: 1rem;
   flex-wrap: wrap;
   color: #cbd5e1;
+}
+
+:root[data-theme='light'] .app-header {
+  background: rgba(248, 251, 255, 0.82);
+  border-bottom-color: rgba(71, 85, 105, 0.14);
+}
+
+:root[data-theme='light'] .brand-block h1,
+:root[data-theme='light'] .hero-panel h2,
+:root[data-theme='light'] .detail-header-row h2,
+:root[data-theme='light'] .pokemon-card h3,
+:root[data-theme='light'] .info-card strong,
+:root[data-theme='light'] .stat-item strong,
+:root[data-theme='light'] .moves-box h3 {
+  color: #1d2b40;
+}
+
+:root[data-theme='light'] .eyebrow,
+:root[data-theme='light'] .hero-kicker {
+  color: #3974b8;
+}
+
+:root[data-theme='light'] .nav-link {
+  color: #40516a;
+}
+
+:root[data-theme='light'] .nav-link:hover,
+:root[data-theme='light'] .nav-link.active {
+  color: #19395f;
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.28);
+}
+
+:root[data-theme='light'] .favorites-pill {
+  color: #9a4e0b;
+  background: rgba(249, 115, 22, 0.1);
+}
+
+:root[data-theme='light'] .theme-toggle,
+:root[data-theme='light'] .secondary-button {
+  color: #33445d;
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(71, 85, 105, 0.2);
+}
+
+:root[data-theme='light'] .theme-toggle:hover {
+  background: #e8f1ff;
+}
+
+:root[data-theme='light'] .hero-panel {
+  background: linear-gradient(135deg, rgba(219, 234, 254, 0.9), rgba(237, 233, 254, 0.82));
+  border-color: rgba(71, 85, 105, 0.16);
+  box-shadow: 0 20px 50px rgba(51, 65, 85, 0.1);
+}
+
+:root[data-theme='light'] .hero-stats div,
+:root[data-theme='light'] .pokemon-card,
+:root[data-theme='light'] .detail-hero,
+:root[data-theme='light'] .stat-item,
+:root[data-theme='light'] .loading-state,
+:root[data-theme='light'] .error-panel,
+:root[data-theme='light'] .empty-state {
+  color: #26364d;
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(71, 85, 105, 0.16);
+  box-shadow: 0 16px 40px rgba(51, 65, 85, 0.08);
+}
+
+:root[data-theme='light'] .hero-stats span,
+:root[data-theme='light'] .field-label,
+:root[data-theme='light'] .pokemon-id,
+:root[data-theme='light'] .pokemon-description,
+:root[data-theme='light'] .species-description p,
+:root[data-theme='light'] .mini-stats,
+:root[data-theme='light'] .page-indicator,
+:root[data-theme='light'] .info-card span,
+:root[data-theme='light'] .stat-item span,
+:root[data-theme='light'] .footer-inner {
+  color: #52647e;
+}
+
+:root[data-theme='light'] .species-description {
+  background: rgba(241, 245, 249, 0.9);
+  border-color: rgba(71, 85, 105, 0.14);
+}
+
+:root[data-theme='light'] .species-description h3,
+:root[data-theme='light'] .description-retry {
+  color: #3974b8;
+}
+
+:root[data-theme='light'] .search-field input,
+:root[data-theme='light'] .field-group select {
+  color: #26364d;
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(71, 85, 105, 0.22);
+}
+
+:root[data-theme='light'] .search-field input::placeholder {
+  color: #7b8ba2;
+}
+
+:root[data-theme='light'] .search-clear,
+:root[data-theme='light'] .favorite-toggle {
+  color: #33445d;
+  background: #edf3fa;
+}
+
+:root[data-theme='light'] .favorite-toggle.active {
+  color: #9a4e0b;
+  background: rgba(249, 115, 22, 0.12);
+}
+
+:root[data-theme='light'] .type-badge,
+:root[data-theme='light'] .move-tag {
+  color: #315785;
+  background: rgba(96, 165, 250, 0.12);
+}
+
+:root[data-theme='light'] .error-panel p,
+:root[data-theme='light'] .empty-state p {
+  color: #52647e;
+}
+
+:root[data-theme='light'] .detail-figure {
+  background: linear-gradient(180deg, rgba(219, 234, 254, 0.72), rgba(237, 233, 254, 0.68));
+  border-color: rgba(71, 85, 105, 0.14);
+}
+
+:root[data-theme='light'] .info-card {
+  background: rgba(241, 245, 249, 0.9);
+  border-color: rgba(71, 85, 105, 0.14);
+}
+
+:root[data-theme='light'] .app-footer {
+  background: rgba(226, 232, 240, 0.5);
+  border-top-color: rgba(71, 85, 105, 0.14);
 }
 
 @media (max-width: 760px) {

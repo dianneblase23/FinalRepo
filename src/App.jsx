@@ -8,6 +8,19 @@ import Details from './pages/Details'
 import Favorites from './pages/Favorites'
 
 const STORAGE_KEY = 'pokevault-favorites'
+const THEME_STORAGE_KEY = 'pokevault-theme'
+
+function readTheme() {
+  if (typeof window === 'undefined') {
+    return 'dark'
+  }
+
+  try {
+    return window.localStorage.getItem(THEME_STORAGE_KEY) === 'light' ? 'light' : 'dark'
+  } catch {
+    return 'dark'
+  }
+}
 
 function readFavorites() {
   if (typeof window === 'undefined') {
@@ -25,11 +38,17 @@ function readFavorites() {
 
 function App() {
   const [favorites, setFavorites] = useState(readFavorites)
+  const [theme, setTheme] = useState(readTheme)
   const [notice, setNotice] = useState('')
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites))
   }, [favorites])
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+  }, [theme])
 
   useEffect(() => {
     if (!notice) {
@@ -66,7 +85,11 @@ function App() {
 
   return (
     <div className="app-shell">
-      <Header favoritesCount={favorites.length} />
+      <Header
+        favoritesCount={favorites.length}
+        theme={theme}
+        onToggleTheme={() => setTheme((currentTheme) => currentTheme === 'dark' ? 'light' : 'dark')}
+      />
 
       {notice && (
         <div className="toast" role="status" aria-live="polite">
