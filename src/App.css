@@ -651,10 +651,28 @@
 
 .footer-inner {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
   color: #cbd5e1;
+}
+
+.footer-brand,
+.footer-meta {
+  margin: 0;
+}
+
+.footer-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+.footer-separator {
+  opacity: 0.7;
 }
 
 :root[data-theme='light'] .app-header {
